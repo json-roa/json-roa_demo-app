@@ -1,0 +1,5 @@
+#!/bin/bash 
+
+curl -X GET \
+   -H 'Accept: application/json-roa+json' \
+   http://localhost:5000/

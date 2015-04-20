@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'>
+<meta content='width=device-width, initial-scale=1' name='viewport'>
+<title>JSON-ROA DEMO</title>
+<link href="assets/stylesheets/app-67a5d996.css" rel="stylesheet" type="text/css" />
+<script src="assets/javascripts/app-eca7008a.js" type="text/javascript"></script>
+</head>
+<body class='index'>
+<div class='container'>
+<h1 id="the-json-roa-demo-application">The JSON-ROA Demo Application</h1>
+
+<p>This is a micro messaging application to demonstrate the capabilities of
+JSON-ROA. Read more about JSON-ROA on the <a href="http://json-roa.github.io/">JSON-ROA Website</a>.</p>
+
+<p>Start right away exploring this API with the embedded <a href="/api-browser/index.html#/">JSON-ROA Browser</a>.</p>
+
+<h2 class="no_toc" id="table-of-contents">Table of Contents</h2>
+<ul id="markdown-toc">
+  <li><a id="markdown-toc-the-json-roa-demo-application" href="#the-json-roa-demo-application">The JSON-ROA Demo Application</a>    <ul>
+      <li><a id="markdown-toc-api-documentation" href="#api-documentation">API Documentation</a>        <ul>
+          <li><a id="markdown-toc-content-types" href="#content-types">Content Types</a></li>
+          <li><a id="markdown-toc-authentication-and-access-control" href="#authentication-and-access-control">Authentication and Access Control</a></li>
+          <li><a id="markdown-toc-resources" href="#resources">Resources</a>            <ul>
+              <li><a id="markdown-toc-root" href="#root">Root <code>/</code></a></li>
+              <li><a id="markdown-toc-users" href="#users">Users <code>/users/</code></a>                <ul>
+                  <li><a id="markdown-toc-post" href="#post">POST</a></li>
+                </ul>
+              </li>
+              <li><a id="markdown-toc-messages" href="#messages">Messages <code>/messages/</code></a>                <ul>
+                  <li><a id="markdown-toc-post-1" href="#post-1">POST</a></li>
+                  <li><a id="markdown-toc-get" href="#get">GET</a></li>
+                </ul>
+              </li>
+              <li><a id="markdown-toc-message" href="#message">Message <code>/messages/:id</code></a>                <ul>
+                  <li><a id="markdown-toc-get-1" href="#get-1">GET</a></li>
+                  <li><a id="markdown-toc-delete" href="#delete">DELETE</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><a id="markdown-toc-copyright-and-license" href="#copyright-and-license">Copyright and License</a>        <ul>
+          <li><a id="markdown-toc-copyright" href="#copyright">Copyright</a></li>
+          <li><a id="markdown-toc-license" href="#license">License</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="api-documentation">API Documentation</h2>
+
+<h3 id="content-types">Content Types</h3>
+<p>All API resources respond with either <code>applictaion/json</code> or of course
+preferably <code>application/json-roa+json</code>. It is important to set the
+corresponding accept header accordingly.</p>
+
+<p>Resources accepting data accept <code>application/json</code> content.</p>
+
+<h3 id="authentication-and-access-control">Authentication and Access Control</h3>
+
+<p>Retrieving the root page, via GET <code>/</code>,  or creating a new user, via  POST
+<code>/users/</code>,  is accessible without authentication. All other resources require
+the credentials submitted via HTTP BASIC.</p>
+
+<h3 id="resources">Resources</h3>
+
+<h4 id="root">Root <code>/</code></h4>
+
+<p>The main entry point.</p>
+
+<h4 id="users">Users <code>/users/</code></h4>
+
+<h5 id="post">POST</h5>
+<p>Create a new user. The payload could look like the following</p>
+
+<div class="highlight json"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2</pre></td><td class="code"><pre><span class="p">{</span><span class="w"> </span><span class="s2">"login"</span><span class="w"> </span><span class="p">:</span><span class="w">  </span><span class="s2">"mylogin"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"password"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"somepassword"</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></pre></td></tr></tbody></table>
+</div>
+
+<p>The request will fail if a user with the same login already exists.</p>
+
+<h4 id="messages">Messages <code>/messages/</code></h4>
+
+<h5 id="post-1">POST</h5>
+
+<p>Publish / create a new message.</p>
+
+<div class="highlight json"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre><span class="p">{</span><span class="w"> </span><span class="s2">"message"</span><span class="w"> </span><span class="p">:</span><span class="w">  </span><span class="s2">"Hello JSON-ROA Users!"</span><span class="p">}</span><span class="w">
+</span></pre></td></tr></tbody></table>
+</div>
+
+<h5 id="get">GET</h5>
+
+<p>List all messages.</p>
+
+<h4 id="message">Message <code>/messages/:id</code></h4>
+
+<h5 id="get-1">GET</h5>
+
+<p>Get the message with the id <code>:id</code>.</p>
+
+<h5 id="delete">DELETE</h5>
+
+<p>Delete the message with the id <code>:id</code>. Only the creator of a 
+message can delete it.</p>
+
+<h2 id="copyright-and-license">Copyright and License</h2>
+
+<h3 id="copyright">Copyright</h3>
+
+<p>Copyright © 2015 Thomas Schank</p>
+
+<h3 id="license">License</h3>
+
+<p>Released to the public under the MIT License.</p>
+
+
+</div>
+</body>
+</html>

@@ -1,0 +1,89 @@
+The JSON-ROA Demo Application
+=============================
+
+This is a micro messaging application to demonstrate the capabilities of
+JSON-ROA. Read more about JSON-ROA on the [JSON-ROA Website][]. 
+
+Start right away exploring this API with the embedded [JSON-ROA Browser][].
+
+## Table of Contents 
+{:.no_toc}
+* Will be replaced with the ToC, excluding the "Contents" header
+{:toc}
+
+
+## API Documentation
+
+### Content Types 
+All API resources respond with either `applictaion/json` or of course
+preferably `application/json-roa+json`. It is important to set the
+corresponding accept header accordingly. 
+
+Resources accepting data accept `application/json` content. 
+
+### Authentication and Access Control
+
+Retrieving the root page, via GET `/`,  or creating a new user, via  POST
+`/users/`,  is accessible without authentication. All other resources require
+the credentials submitted via HTTP BASIC.
+
+### Resources 
+
+#### Root `/`
+{: #root}
+
+The main entry point. 
+
+#### Users `/users/`
+{: #users}
+
+##### POST
+Create a new user. The payload could look like the following 
+
+    { "login" :  "mylogin",
+      "password" : "somepassword" }
+  {: .language-json}
+
+The request will fail if a user with the same login already exists. 
+
+#### Messages `/messages/`
+{: #messages}
+
+##### POST
+
+Publish / create a new message. 
+
+    { "message" :  "Hello JSON-ROA Users!"}
+  {: .language-json}
+
+##### GET
+
+List all messages.
+
+#### Message `/messages/:id`
+{: #message}
+
+##### GET
+
+Get the message with the id `:id`.
+
+##### DELETE
+
+Delete the message with the id `:id`. Only the creator of a 
+message can delete it. 
+
+## Copyright and License
+
+### Copyright 
+
+Copyright © 2015 Thomas Schank 
+
+### License
+
+Released to the public under the MIT License. 
+
+
+  [JSON-ROA Browser]: /api-browser/index.html#/
+  [JSON-ROA Website]: http://json-roa.github.io/
+
+
