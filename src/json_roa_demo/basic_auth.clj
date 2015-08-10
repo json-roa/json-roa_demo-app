@@ -1,13 +1,13 @@
 ; Copyright (C) 2015 Dr. Thomas Schank  (DrTom@schank.ch, Thomas.Schank@algocon.ch)
 
 (ns json-roa-demo.basic-auth
-  (:require 
+  (:require
+    [cider-ci.open-session.bcrypt :refer [checkpw!]]
     [clojure.data.codec.base64 :as base64]
     [clojure.java.jdbc :as jdbc]
     [clojure.tools.logging :as logging]
+    [drtom.logbug.thrown :as thrown]
     [json-roa-demo.rdbms :refer [get-db]]
-    [cider-ci.open-session.bcrypt :refer [checkpw!]]
-    [cider-ci.utils.exception :as exception]
     )
   )
 
@@ -32,7 +32,7 @@
            (throw std-extr-error)))))
 
 (defn- get-db-user! [username]
-  (or (first (jdbc/query 
+  (or (first (jdbc/query
                (get-db)
                ["SELECT * FROM USERS WHERE login = ?" username]))
       (throw (ex-info "User does not exist." {}))))
@@ -40,7 +40,7 @@
 (defn- authenticate [request]
   (logging/debug 'authenticate request)
   (let [[username pasword] (extract-basic-auth-properties request)
-        db-user (get-db-user! username)] 
+        db-user (get-db-user! username)]
     (checkpw! pasword (:password_digest db-user))
     (assoc request
            :authenticated_user db-user)))
@@ -51,11 +51,11 @@
              authenticate
              handler)
          (catch Exception e
-           (logging/warn (exception/stringify e))
+           (logging/warn (thrown/stringify e))
            {:status 401
             :headers {"WWW-Authenticate" (str "Basic realm=\"JSON-ROA DEMO, credentials required.\" " (.getMessage e))}
             :body {}
             }))))
 
 
-      
+
