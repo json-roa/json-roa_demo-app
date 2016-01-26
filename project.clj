@@ -1,4 +1,4 @@
-(defproject json-roa_demo-app  "1.1.1"
+(defproject json-roa_demo-app  "1.1.2"
   :description "JSON-ROA Demo-App"
   :url "https://github.com/json-roa/json-roa_demo-app"
   :license {:name "MIT" }

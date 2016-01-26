@@ -62,7 +62,7 @@
         ids (->> (-> response :body :messages)
                  (map :id))
         rels (->> ids
-                  (map (fn [id] [id (build-message-rel nil nil {:id id})]))
+                  (map (fn [id] [id (build-message-rel response request {:id id})]))
                   (into {}))]
     (-> response
         (assoc-in [:body :_json-roa :collection :relations] rels)
